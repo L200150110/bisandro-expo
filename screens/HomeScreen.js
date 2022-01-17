@@ -7,7 +7,6 @@ import {
   Dimensions,
   ScrollView
 } from "react-native";
-import { Avatar, Card, IconButton, Title, Paragraph } from "react-native-paper";
 import ItemCard from "./../components/ItemCard";
 import { useKeepAwake } from "expo-keep-awake";
 

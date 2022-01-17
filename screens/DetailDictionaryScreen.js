@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { Button, Card, Title, Paragraph } from "react-native-paper";
 import { useKeepAwake } from "expo-keep-awake";
 import ItemCard from "./../components/ItemCard";
 
@@ -8,7 +7,7 @@ export default function DetailDictionaryScreen({ route, navigation }) {
   useKeepAwake();
   const [category, setCategory] = useState(null);
   const [imageLocation, setImageLocation] = useState("");
-  const [VideoLocation, setVideoLocation] = useState("");
+  const [videoLocation, setVideoLocation] = useState("");
   let jenis = route.params.jenis;
 
   const getData = () => {
@@ -58,7 +57,8 @@ export default function DetailDictionaryScreen({ route, navigation }) {
                     title={item[0].nama}
                     onPress={() => {
                       navigation.navigate("VideoDictionary", {
-                        video: item[0].video
+                        title: item[0].nama,
+                        videoUrl: videoLocation + item[0].video
                       });
                     }}
                   />
@@ -67,7 +67,8 @@ export default function DetailDictionaryScreen({ route, navigation }) {
                     title={item[1].nama}
                     onPress={() => {
                       navigation.navigate("VideoDictionary", {
-                        video: item[1].video
+                        title: item[1].nama,
+                        videoUrl: videoLocation + item[1].video
                       });
                     }}
                   />

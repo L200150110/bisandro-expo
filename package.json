@@ -16,6 +16,7 @@
     "@tensorflow/tfjs": "^3.12.0",
     "@tensorflow/tfjs-react-native": "^0.8.0",
     "expo": "~44.0.0",
+    "expo-av": "~10.2.0",
     "expo-camera": "~12.1.0",
     "expo-gl": "~11.1.1",
     "expo-gl-cpp": "~11.1.0",
@@ -28,13 +29,14 @@
     "react-native-paper": "^4.11.2",
     "react-native-safe-area-context": "3.3.2",
     "react-native-screens": "~3.10.1",
-    "react-native-vector-icons": "^9.0.0",
-    "react-native-video": "^5.2.0",
-    "react-native-video-player": "^0.12.0",
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"
   },
-  "private": true
+  "private": true,
+  "description": "bisandro surakarta",
+  "repository": "https://github.com/L200150110/bisandro-expo.git",
+  "author": "L200150110 <riski.fight@ymail.com>",
+  "license": "MIT"
 }

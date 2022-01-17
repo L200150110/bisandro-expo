@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import { Button, Card, Title, Paragraph } from "react-native-paper";
 import { useKeepAwake } from "expo-keep-awake";
 import ItemCard from "./../components/ItemCard";
 
