@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { View, StyleSheet, Dimensions, Text } from "react-native";
-import { Video, AVPlaybackStatus } from "expo-av";
-import { Button, Card, Title, Paragraph } from "react-native-paper";
+import VideoCard from "./../components/VideoCard";
 
 export default function VideoDictionaryScreen({ route, navigation }) {
   const video = React.useRef(null);
@@ -12,25 +11,7 @@ export default function VideoDictionaryScreen({ route, navigation }) {
   return (
     <View style={styles.container}>
       <View style={styles.blockContainer}>
-        <Card style={styles.card}>
-          <Card.Content>
-            <View style={styles.contentContainer}>
-              <Video
-                ref={video}
-                style={styles.video}
-                source={{
-                  uri: videoUrl
-                }}
-                resizeMode="cover"
-                isLooping
-                onReadyForDisplay={() => video.current.playAsync()}
-              />
-              <Text style={styles.title}>
-                {title}
-              </Text>
-            </View>
-          </Card.Content>
-        </Card>
+        <VideoCard title={title} videoUrl={videoUrl} />
       </View>
     </View>
   );
@@ -42,14 +23,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 12.5
   },
-  video: {
-    width: "100%",
-    height: 200
-  },
-  card: {
-    width: Dimensions.get("screen").width - 50,
-    height: (Dimensions.get("screen").width - 25) / 4 * 3
-  },
   blockContainer: {
     backgroundColor: "#92c5eb",
     borderRadius: 15,
@@ -57,13 +30,5 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 12.5,
     marginBottom: 12.5
-  },
-  contentContainer: {
-    width: "100%",
-    alignItems: "center"
-  },
-  title: {
-    marginTop: 10,
-    fontSize: 30
   }
 });

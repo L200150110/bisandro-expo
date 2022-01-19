@@ -1,3 +1,4 @@
+import "expo-dev-client";
 //import modules
 import React from "react";
 import { View, Text } from "react-native";

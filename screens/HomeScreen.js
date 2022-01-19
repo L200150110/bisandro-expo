@@ -12,6 +12,7 @@ import { useKeepAwake } from "expo-keep-awake";
 
 export default function HomeScreen({ navigation }) {
   useKeepAwake();
+
   return (
     <ScrollView style={styles.scrollContainer}>
       <View style={styles.container}>
