@@ -1,65 +1,50 @@
-import React, { useState, useEffect } from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
-import Voice, {
-  SpeechResultsEvent,
-  SpeechErrorEvent,
-} from "@react-native-voice/voice";
-import { useKeepAwake } from "expo-keep-awake";
+import React, { useState } from "react";
+import { View, Text, StyleSheet } from "react-native";
+import SearchBar from "./../components/SearchBar";
+import HasilScrollView from "./../components/HasilScrollView";
 
-export default function VoiceToTextScreen() {
-  useKeepAwake();
-  const [results, setResults] = useState('');
-  const [isListening, setIsListening] = useState(false);
+export default function VoiceToSignScreen() {
+  const [inputText, setInputText] = useState("");
+  const [hasil, setHasil] = useState(null);
 
-  useEffect(() => {
-    function onSpeechResults(e: SpeechResultsEvent) {
-      setResults(e.value ?? []);
-    }
-    function onSpeechError(e: SpeechErrorEvent) {
-      console.error(e);
-    }
-    Voice.onSpeechError = onSpeechError;
-    Voice.onSpeechResults = onSpeechResults;
-    return function cleanup() {
-      Voice.destroy().then(Voice.removeAllListeners);
-    };
-  }, []);
+  const searchHandler = () => {
+    console.log(inputText);
+    searchData();
+  };
 
-  async function toggleListening() {
-    try {
-      if (isListening) {
-        await Voice.stop();
-        setIsListening(false);
-      } else {
-        setResults([]);
-        await Voice.start("en-US");
-        setIsListening(true);
-      }
-    } catch (e) {
-      console.error(e);
+  const searchData = () => {
+    if (inputText == "") {
+      setHasil(null);
+    } else {
+      fetch(
+        "http://bisandro.com/api/vocabulary/mass/" +
+          inputText.replace(/ /g, "_")
+      )
+        .then(response => response.json())
+        .then(json => {
+          setHasil(json.data);
+        })
+        .catch(err => {
+          console.log(err);
+        });
     }
-  }
+  };
 
   return (
     <View style={styles.container}>
-      <Text>Press the button and start speaking.</Text>
-      <Button
-        title={isListening ? "Stop Recognizing" : "Start Recognizing"}
-        onPress={toggleListening}
+      <SearchBar
+        value={inputText}
+        editable={false}
+        searchHandler={() => searchHandler()}
+        image={require("./../assets/icon/free-microphone.png")}
       />
-      <Text>Results:</Text>
-      {results.map((result, index) => {
-        return <Text key={`result-${index}`}>{result}</Text>;
-      })}
+      <HasilScrollView hasil={hasil} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "#F5FCFF",
-  },
+    flex: 1
+  }
 });

@@ -15,6 +15,7 @@ import VoiceToSignScreen from "./screens/VoiceToSignScreen";
 import TextToSignScreen from "./screens/TextToSignScreen";
 import VoiceToTextScreen from "./screens/VoiceToTextScreen";
 import ManualScreen from "./screens/ManualScreen";
+import DetailManualScreen from "./screens/DetailManualScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -38,6 +39,7 @@ export default function App() {
         <Stack.Screen name="TextToSign" component={TextToSignScreen} />
         <Stack.Screen name="VoiceToText" component={VoiceToTextScreen} />
         <Stack.Screen name="Manual" component={ManualScreen} />
+        <Stack.Screen name="DetailManual" component={DetailManualScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -87,8 +87,6 @@ const styles = StyleSheet.create({
   },
   blockContainer: {
     backgroundColor: "#92c5eb",
-    // borderColor: "#111",
-    // borderWidth: 3,
     borderRadius: 15,
     width: "100%",
     alignItems: "center",
